@@ -1,0 +1,26 @@
+---
+- name: Clone the Httpx Repo
+  become: yes
+  become_user: kali
+  become_method: sudo
+  git:
+    repo: "https://github.com/projectdiscovery/httpx.git"
+    dest: ~/tools/httpx
+
+- name: Build the docker image
+  become: yes
+  become_method: sudo
+  become_user: kali
+  docker_image:
+    name: httpx
+    build:
+      path: ~/tools/httpx
+    source: build
+
+- name: Add the alias for the Httpx Docker Container
+  become: yes
+  become_user: kali 
+  become_method: sudo
+  lineinfile:
+    path: ~/.bashrc
+    line: 'alias httpx="docker run -i httpx"'

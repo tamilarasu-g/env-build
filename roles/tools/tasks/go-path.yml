@@ -1,0 +1,8 @@
+---
+- name: Add Go binary packages to path
+  become: yes
+  become_method: sudo
+  become_user: kali
+  lineinfile:
+    path: ~/.bashrc
+    line: export PATH=$PATH:/home/kali/go/bin

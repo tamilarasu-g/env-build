@@ -1,0 +1,57 @@
+---
+- name: Install the Dependencies
+  become: yes
+  become_method: sudo
+  apt:
+    name:
+      - ca-certificates
+      - curl
+      - gnupg
+    update_cache: true
+    
+- name: Add GPG Key
+  shell:
+    cmd: |
+      sudo install -m 0755 -d /etc/apt/keyrings
+      curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+      sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+- name: Add the repo to the sources file
+  shell:
+    cmd: |
+      echo \
+      "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+      "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+      sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+- name: Update the Packages
+  include_tasks: update.yml
+
+- name: Install Docker Packages
+  become: yes
+  become_method: sudo
+  apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+    state: latest
+    update_cache: yes
+
+- name: Ensure that Docker Group Exists
+  become: yes
+  group:
+    name: docker
+    state: present
+
+- name: Ensure that a non root user exists
+  include_tasks: create-user.yml
+
+- name: Add user to the Docker group
+  become: yes
+  user:
+    name: kali
+    groups: docker
+    append: true

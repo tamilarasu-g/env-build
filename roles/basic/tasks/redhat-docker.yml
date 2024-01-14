@@ -1,0 +1,38 @@
+---
+- name: Update the Packages
+  import_tasks: update.yml
+
+- name: Add the Docker Repository
+  become: yes
+  become_method: sudo
+  command: "{{ item }}"
+  loop:
+    - yum install -y yum-utils
+    - yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+- name: Install the Docker Packages
+  become: yes
+  become_method: sudo
+  yum:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+    state: latest
+  notify: Start and Enable Docker
+
+- name: Add the user to Docker Group
+  become: yes
+  become_method: sudo
+  user:
+    name: kali
+    groups: docker
+    append: yes
+
+- name: Start and Enable Docker
+  systemd:
+    name: docker
+    state: started
+    enabled: yes

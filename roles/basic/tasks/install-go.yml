@@ -1,0 +1,32 @@
+---
+- name: Download Go Tar File
+  get_url:
+    url: https://go.dev/dl/go1.21.5.linux-amd64.tar.gz
+    dest: /tmp/
+
+- name: Remove Previous Installation of Go
+  become: yes
+  become_method: sudo
+  file:
+    path: /usr/local/go
+    state: absent
+
+- name: Extract the Tar file and move it to /usr/local
+  become: yes
+  become_method: sudo
+  unarchive:
+    src: /tmp/go1.21.5.linux-amd64.tar.gz
+    dest: /usr/local/
+
+- name: Delete Downloaded Tar File
+  file:
+    path: /tmp/go1.21.5.linux-amd64.tar.gz
+    state: absent
+
+- name: Add Go binary to the path
+  become: yes
+  become_method: sudo
+  lineinfile:
+    path: /home/kali/.bashrc
+    line: 'export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin'
+    state: present

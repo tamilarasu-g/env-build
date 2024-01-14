@@ -1,0 +1,8 @@
+---
+- name: Install Tar in RedHat OS Family
+  become: yes
+  become_method: sudo
+  yum:
+    name: tar
+    state: latest
+    update_cache: true

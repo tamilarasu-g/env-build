@@ -1,0 +1,14 @@
+---
+- name: Install ACL on RedHat Based OS
+  yum:
+    name: acl
+    state: latest
+    update_cache: yes
+  when: ansible_os_family == "RedHat"
+
+- name: Install ACL on Debian Based OS
+  apt:
+    name: acl
+    state: latest
+    update_cache: yes
+  when: ansible_os_family == "Debian"

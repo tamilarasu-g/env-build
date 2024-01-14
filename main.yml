@@ -1,0 +1,7 @@
+---
+- name: Setup the Environment
+  hosts: localhost
+  connection: local
+  roles:
+    - role: "roles/basic/"
+    - role: "roles/tools"

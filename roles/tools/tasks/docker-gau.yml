@@ -1,0 +1,15 @@
+---
+- name: Pull gau image
+  become: yes
+  become_method: sudo  
+  docker_image:
+    name: sxcurity/gau
+    source: pull
+
+- name: Add alias for the Gau container
+  become: yes
+  become_user: kali
+  become_method: sudo
+  lineinfile:
+    path: ~/.bashrc
+    line: 'alias gau="docker run -i sxcurity/gau"'

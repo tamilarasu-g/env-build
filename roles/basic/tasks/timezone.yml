@@ -1,0 +1,5 @@
+---
+- name: Change the timezone to India
+  become: yes
+  become_method: sudo
+  command: timedatectl set-timezone Asia/Kolkata

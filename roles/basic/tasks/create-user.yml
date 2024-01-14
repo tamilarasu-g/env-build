@@ -1,0 +1,28 @@
+---
+- name: Create Non root User
+  become: yes
+  become_method: sudo
+  user:
+    name: kali
+    create_home: yes
+    password: "$6$Qo7vcasLBkTFCFWn$/SJcThw2wHXhr8imZoEHBdmcgVyypqE5ePVJ7CYH.80LYX0QsXutGWyyMVuljrWHHsFjAuyme1zw5Gyd15ZIT1"
+    shell: /usr/bin/bash
+  when: ansible_user_id  != 'kali' 
+
+- name: Add the user to Sudo Group
+  become: yes
+  become_method: sudo
+  user:
+    name: kali
+    groups: sudo
+    append: yes
+  when: ansible_os_family == "Debian"
+
+- name: Add user to Wheel Group
+  become: yes
+  become_method: sudo
+  user:
+    name: kali
+    groups: wheel
+    append: yes
+  when: ansible_os_family == "RedHat"

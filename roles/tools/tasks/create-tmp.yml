@@ -1,0 +1,10 @@
+---
+- name: Create tmp
+  become: yes
+  become_method: sudo
+  file:
+    path: /home/kali/.ansible/tmp
+    state: directory
+    mode: 0777
+    owner: kali
+    group: kali
