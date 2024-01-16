@@ -1,5 +1,7 @@
 ---
 - name: Install ACL on RedHat Based OS
+  become: yes
+  become_method: sudo
   yum:
     name: acl
     state: latest
@@ -7,6 +9,8 @@
   when: ansible_os_family == "RedHat"
 
 - name: Install ACL on Debian Based OS
+  become: yes
+  become_method: sudo
   apt:
     name: acl
     state: latest
