@@ -1,18 +1,8 @@
 ---
-- name: Install dnsutils package in Debain Based OS
+- name: Install dnsutils package
   become: yes
   become_method: sudo
-  apt:
-    name: dnsutils
+  package:
+    name: "{{ package_name }}"
     state: latest
     update_cache: yes
-  when: ansible_os_family == "Debian"
-
-- name: Install dnsutils package in RedHat Based OS
-  become: yes
-  become_method: sudo  
-  yum:
-    name: bind-utils
-    state: latest
-    update_cache: yes
-  when: ansible_os_family == "RedHat"

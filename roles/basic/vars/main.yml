@@ -1,2 +1,6 @@
 ---
-# vars file for basic
+package_names:
+  RedHat: bind-utils
+  Debian: dnsutils
+
+package_name : "{{ package_names[ansible_os_family] }}"
