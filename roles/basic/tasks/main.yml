@@ -2,15 +2,12 @@
 - import_tasks: epel-repo.yml
   when: ansible_os_family == "RedHat" and ansible_distribution != "Amazon"
 - import_tasks: update.yml 
-- import_tasks: install-acl.yml
-- import_tasks: tar.yml
-  when: ansible_os_family == "RedHat"
+- import_tasks: install-packages.yml
 - import_tasks: create-user.yml
 - import_tasks: debian-docker.yml
   when: ansible_os_family == "Debian"
 - import_tasks: redhat-docker.yml
   when: ansible_os_family == "RedHat"
 - import_tasks: install-go.yml
-- import_tasks: install-tmux-htop.yml
 - import_tasks: install-dnsutils.yml
 - import_tasks: timezone.yml

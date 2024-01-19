@@ -1,0 +1,11 @@
+---
+- name: Install Packages
+  become: yes
+  become_method: sudo
+  package:
+    name:
+      - acl
+      - tmux
+      - htop
+      - tar
+    state: latest
