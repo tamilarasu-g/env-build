@@ -4,7 +4,7 @@
   become_user: kali
   become_method: sudo
   git:
-    repo: "git clone https://github.com/sullo/nikto.git"
+    repo: "https://github.com/sullo/nikto.git"
     dest: ~/tools/nikto
 
 - name: Build the docker image
