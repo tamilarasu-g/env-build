@@ -1,0 +1,9 @@
+---
+- name: Install nmap and netcat
+  become: yes
+  become_method: sudo
+  package:
+    name: 
+      - nmap
+      - "{{ package_name }}"
+    state: latest

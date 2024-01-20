@@ -2,9 +2,10 @@
 - import_tasks: create-tmp.yml
 - import_tasks: install-httpx.yml
 - import_tasks: install-subfinder.yml
-- import_tasks: install-nmap.yml
+- import_tasks: install-nmap-netcat.yml
+- import_tasks: install-nikto.yml
 - import_tasks: docker-gau.yml
-- import_tasks: download-seclists.yml
+- import_tasks: download-seclists-sqlmap.yml
 - import_tasks: go-tools.yml
 - import_tasks: docker-jq.yml
 - import_tasks: go-path.yml

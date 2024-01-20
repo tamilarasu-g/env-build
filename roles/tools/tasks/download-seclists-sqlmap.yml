@@ -1,0 +1,15 @@
+---
+- name: Clone the Seclists Repo
+  become: yes
+  become_method: sudo
+  git:
+    repo: "https://github.com/danielmiessler/SecLists.git"
+    dest: /usr/local/seclists
+
+- name: Clone the sqlmap repo
+  become: yes
+  become_user: kali
+  become_method: sudo
+  git:
+    repo: "https://github.com/sqlmapproject/sqlmap.git"
+    dest: /home/kali/tools/sqlmap

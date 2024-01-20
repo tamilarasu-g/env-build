@@ -1,7 +1,0 @@
----
-- name: Clone the Seclists Repo
-  become: yes
-  become_method: sudo
-  git:
-    repo: "https://github.com/danielmiessler/SecLists.git"
-    dest: /usr/local/seclists

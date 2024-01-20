@@ -1,0 +1,26 @@
+---
+- name: Clone the Nikto Repo
+  become: yes
+  become_user: kali
+  become_method: sudo
+  git:
+    repo: "git clone https://github.com/sullo/nikto.git"
+    dest: ~/tools/nikto
+
+- name: Build the docker image
+  become: yes
+  become_method: sudo
+  become_user: kali
+  docker_image:
+    name: nikto
+    build:
+      path: ~/tools/nikto
+    source: build
+
+- name: Add the alias for the Nikto Docker Container
+  become: yes
+  become_user: kali 
+  become_method: sudo
+  lineinfile:
+    path: ~/.bashrc
+    line: 'alias nikto="docker run -i nikto"'

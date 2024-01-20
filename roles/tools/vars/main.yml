@@ -1,2 +1,6 @@
 ---
-# vars file for tools
+package_names:
+  RedHat: netcat
+  Debian: netcat-traditional
+
+package_name: "{{ package_names[ansible_os_family] }}"

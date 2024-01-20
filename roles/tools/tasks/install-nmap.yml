@@ -1,7 +1,0 @@
----
-- name: Install nmap
-  become: yes
-  become_method: sudo
-  package:
-    name: nmap
-    state: latest
