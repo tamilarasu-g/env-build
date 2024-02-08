@@ -2,13 +2,25 @@
 - name: Update the Packages
   import_tasks: update.yml
 
+- name: Install Yum Utils
+  become: yes
+  become_method: sudo
+  yum:
+    name: yum-utils
+    state: latest
+
+- name: Check if Docker GPG Key is present
+  become: yes
+  become_method: sudo
+  stat:
+    path: /etc/yum.repos.d/docker-ce.repo
+  register: dockerrepo
+
 - name: Add the Docker Repository
   become: yes
   become_method: sudo
-  command: "{{ item }}"
-  loop:
-    - yum install -y yum-utils
-    - yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+  command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+  when: not dockerrepo.stat.exists
 
 - name: Install the Docker Packages
   become: yes
