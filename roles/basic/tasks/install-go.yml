@@ -17,6 +17,7 @@
   unarchive:
     src: /tmp/go1.21.5.linux-amd64.tar.gz
     dest: /usr/local/
+    remote_src: yes
 
 - name: Delete Downloaded Tar File
   file:
