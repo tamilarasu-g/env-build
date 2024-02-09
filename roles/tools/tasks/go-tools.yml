@@ -17,3 +17,15 @@
   become_user: kali
   become_method: sudo
   command: /usr/local/go/bin/go install github.com/OJ/gobuster/v3@latest
+
+- name: Install Subfinder
+  become: yes
+  become_user: kali
+  become_method: sudo
+  command: /usr/local/go/bin/go install github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+
+- name: Install Httpx
+  become: yes
+  become_user: kali
+  become_method: sudo
+  command: /usr/local/go/bin/go install github.com/projectdiscovery/httpx/cmd/httpx@latest
