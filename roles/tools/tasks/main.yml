@@ -1,7 +1,5 @@
 ---
 - import_tasks: create-tmp.yml
-- import_tasks: install-httpx.yml
-- import_tasks: install-subfinder.yml
 - import_tasks: install-nmap-netcat.yml
 - import_tasks: install-nikto.yml
 - import_tasks: docker-gau.yml
