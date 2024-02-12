@@ -10,3 +10,4 @@
     - github.com/OJ/gobuster/v3@latest
     - github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
     - github.com/projectdiscovery/httpx/cmd/httpx@latest
+    - github.com/lc/gau/v2/cmd/gau@latest
