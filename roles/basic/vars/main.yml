@@ -3,4 +3,9 @@ package_names:
   RedHat: bind-utils
   Debian: dnsutils
 
+sudo_groups:
+  RedHat: wheel
+  Debian: sudo
+
 package_name : "{{ package_names[ansible_os_family] }}"
+sudo_group : "{{ sudo_groups[ansible_os_family] }}"
