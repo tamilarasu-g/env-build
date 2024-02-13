@@ -14,15 +14,5 @@
   become_method: sudo
   user:
     name: kali
-    groups: sudo
+    groups: "{{ sudo_group }}"
     append: yes
-  when: ansible_os_family == "Debian"
-
-- name: Add user to Wheel Group
-  become: yes
-  become_method: sudo
-  user:
-    name: kali
-    groups: wheel
-    append: yes
-  when: ansible_os_family == "RedHat"
