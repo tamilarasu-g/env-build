@@ -8,4 +8,5 @@
       - tmux
       - htop
       - tar
+      - git
     state: latest
