@@ -5,4 +5,5 @@
 - import_tasks: download-seclists-sqlmap.yml
 - import_tasks: go-tools.yml
 - import_tasks: docker-jq.yml
+- import_tasks: install-httpx.yml
 - import_tasks: go-path.yml
